@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class KeepController extends Controller
+class MypageController extends Controller
 {
     //
     public function home()
     {
-        return view('mypage');
+        return view('home/mypage');
     }
 }
