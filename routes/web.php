@@ -46,3 +46,7 @@ Route::get('/home', [App\Http\Controllers\User\After_login_Controller::class, 'i
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\User\before_login_Controller::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

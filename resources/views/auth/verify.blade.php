@@ -1,4 +1,3 @@
-<!-- 何のファイルか分からんけど一応置いておく-->
 @extends('layouts.app')
 
 @section('content')

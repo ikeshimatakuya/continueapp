@@ -1,6 +1,4 @@
-@extends('layouts.app ')
-
-@section('title', '会員登録完了画面')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
