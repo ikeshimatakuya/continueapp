@@ -30,17 +30,17 @@
             <header>
                 <a>headerタグ</a>
                 <h1>
-                    <a href="{{ url('home/mypage') }}">アプリケーション</a>
+                    <a href="{{ route('home.mypage') }}">アプリケーション</a>
                 </h1>
                 <nav>
                     <li>
-                        <a href="{{ url('home/past_action') }}">過去履歴</a>
+                        <a href="{{ route('home.past_history') }}">過去履歴</a>
                     </li>
                     <li>
-                        <a href="{{ url('home/various_setting') }}">各種設定</a>
+                        <a href="{{ route('home.various_setting') }}">各種設定</a>
                     </li>
                     <li>
-                        <a href="{{ url('home/user_manual') }}">ご利用ガイド</a>
+                        <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>
                     </li>
                 </nav>
                 <p>-------------------------------------------------------------------------</p>

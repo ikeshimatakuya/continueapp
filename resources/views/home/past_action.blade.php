@@ -10,7 +10,7 @@
         <div>
             <!-- テーブルのセルにリンク埋め込むのどうやってするんやろか？ -->
             <table>
-                <a href="home/pie_chart">（例）2023/01/01 ~ 2023/01/31</a>
+                <a href="{{ route('home.pie_chart')}}">（例）2023/01/01 ~ 2023/01/31</a>
                 <tr>
                     <td>（例）2023/01/01 ~ 2023/01/31</td>
                 </tr>
@@ -20,7 +20,7 @@
             </table>
         </div>
         <div>
-            <a href="{{ url('home/mypage') }}" class="btn">戻る</a>
+            <a href="{{ route('home.mypage') }}">マイページへ戻る</a>
         </div>
     </div>
 @endsection

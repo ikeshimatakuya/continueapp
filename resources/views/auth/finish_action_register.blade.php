@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.before_login_layout')
 
-        <title>アクション登録完了</title>
-    </head>
-    <body>
-        <h1>アクション登録完了画面</h1>
+@section('title', '目標/アクション登録完了')
+
+@section('content')
+    <def>
+        <b2>アクション登録完了画面</b2>
+        <p>アクション登録が完了しました</p>
         
-        <a href="home/mypage">マイページへ</a>
-        
-    </body>
-</html>
+        <a href="{{ route('home.mypage') }}">マイページへ</a>
+    </def>
+@endsection

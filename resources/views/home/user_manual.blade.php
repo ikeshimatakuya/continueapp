@@ -7,6 +7,7 @@
         <h1>画面：ご利用ガイド</h1>
         <a>この画面はご利用ガイドです。</a>
         <br>
-        <input type="button" onclick="{{ url('home/mypage') }}" value="マイページ">
+        <!-- CSSでボタン表示 -->
+        <a href="{{ route('home.mypage') }}">マイページ</a>
     </div>
 @endsection

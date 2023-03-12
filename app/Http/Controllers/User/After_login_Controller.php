@@ -32,6 +32,10 @@ class After_login_Controller extends Controller
     {
         return view('home/mypage');
     }
+    public function post_mypage()
+    {
+        return view('home/mypage');
+    }
     
     public function past_history()
     {
@@ -50,6 +54,7 @@ class After_login_Controller extends Controller
     
     public function user_manual()
     {
+        // dd('ユーザーマニュアルが呼ばれた');
         return view('home/user_manual');
     }
 }

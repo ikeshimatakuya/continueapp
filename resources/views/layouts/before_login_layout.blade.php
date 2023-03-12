@@ -28,9 +28,7 @@
     <body>
         <div>
             <header>
-                <h1>
-                    <a href="{{ url('auth/login') }}">アプリケーション</a>
-                </h1>
+                <h1>アプリケーション</h1>
             </header>
             <main>
                 @yield('content')

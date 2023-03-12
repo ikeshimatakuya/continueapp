@@ -6,7 +6,7 @@
     <h2>画面：各種設定</h2>
     
     <!-- post使った送信方法わからんかったし質問。先にDB作らなあかんかも-->
-    <form action="{{ url('home/mypage') }}">
+    <form action="{{ route('home.mypage') }}">
         <input type="submit" value="送信">
     </form>
 @endsection

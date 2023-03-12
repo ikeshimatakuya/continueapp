@@ -1,4 +1,4 @@
-@extends('layouts.before_login_layout')
+@extends('layouts.app ')
 
 @section('title', '会員登録完了画面')
 
