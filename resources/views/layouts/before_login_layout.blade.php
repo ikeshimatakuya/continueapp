@@ -29,10 +29,17 @@
         <div>
             <header>
                 <h1>アプリケーション</h1>
+                <nav>
+                    <li>
+                        <a></a>
+                    </li>
+                </nav>
             </header>
+            
             <main>
                 @yield('content')
             </main>
+            
         </div>
     </body>
 </html>

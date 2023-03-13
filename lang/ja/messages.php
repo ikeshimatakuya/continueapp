@@ -6,4 +6,6 @@ return [
     'email' => 'メールアドレス',
     'password' => 'パスワード',
     'remember_me' => 'ログイン情報を記憶する',
+    'confirm_password' => '同じパスワード',
+    'register' => '会員登録',
 ];

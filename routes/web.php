@@ -21,13 +21,17 @@ Route::get('/', function () {
 
 Route::controller(Before_login_Controller::class)->prefix('auth')->name('auth.')->middleware('auth')->group(function(){
     Route::get('finish_user_register','finish_user_register')->name('finish_user_register');
+    Route::post('finish_user_register','finish_user_register')->name('finish_user_register');
     Route::get('action_register','action_register')->name('action_register');
     Route::get('finish_action_register','finish_action_register')->name('finish_action_register');
 });
 
+// Route::routes(get('/home', [App\Http\Controllers\User\before_login_Controller::class, ''])->('register');
+
 
 Route::controller(After_login_Controller::class)->prefix('home')->name('home.')->group(function(){
     Route::get('mypage','mypage')->name('mypage');
+    Route::post('mypage','mypage')->name('mypage');
     Route::get('past_action','past_history')->name('past_history');
     Route::get('pie_chart','past_pie_chart')->name('pie_chart');
     Route::get('various_setting','various_setting')->name('various_setting');
@@ -35,18 +39,6 @@ Route::controller(After_login_Controller::class)->prefix('home')->name('home.')-
     
 });
 
-
-
-
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\User\After_login_Controller::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\User\before_login_Controller::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
