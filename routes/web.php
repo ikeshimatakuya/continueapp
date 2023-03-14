@@ -29,7 +29,7 @@ Route::controller(Before_login_Controller::class)->prefix('auth')->name('auth.')
 // Route::routes(get('/home', [App\Http\Controllers\User\before_login_Controller::class, ''])->('register');
 
 
-Route::controller(After_login_Controller::class)->prefix('home')->name('home.')->group(function(){
+Route::controller(After_login_Controller::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
     Route::get('mypage','mypage')->name('mypage');
     Route::post('mypage','mypage')->name('mypage');
     Route::get('past_action','past_history')->name('past_history');

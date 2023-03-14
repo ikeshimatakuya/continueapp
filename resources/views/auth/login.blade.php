@@ -7,7 +7,7 @@
     <div>{{ __('messages.login') }}</div>
     <div>
         <!-- ログイン後、マイページへ遷移 -->
-        <form method="POST" action="{{ route('home.mypage') }}">
+        <form method="POST" action="{{ route('login') }}">          
         <!-- リクエストを送信しているのがログインを行なったユーザーかどうか確認 -->
         @csrf
             <div>

@@ -42,13 +42,13 @@
                     <li>
                         <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>
                     </li>
-                    <li>
-                        <a>ログアウト</a>
-                    </li>
                 </nav>
-                <p>-------------------------------------------------------------------------</p>
+                <form action="{{ route('logout') }}" method="POST">
+                    @CSRF
+                    <button>ログアウト</button>
+                </form>
             </header>
-            <a>mainタグ</a>
+            <p>mainタグ</p>
             <main>
                 @yield('content')
             </main>
