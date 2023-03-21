@@ -12,7 +12,7 @@
             <p>ああああああああ<br>それではアクション登録をしましょう！</p>
         </div>
         <div>
-            <a href="{{ route('auth.action_register') }}">アクション登録の説明へ</a>
+            <a href="{{ route('training_aim_register') }}">トレーニング目標登録へ進む</a>
         </div>
     </div>
 @endsection

@@ -37,7 +37,7 @@
                         <a href="{{ route('home.past_history') }}">過去履歴</a>
                     </li>
                     <li>
-                        <a href="{{ route('home.various_setting') }}">各種設定</a>
+                        <a href="{{ route('home.setting') }}">各種設定</a>
                     </li>
                     <li>
                         <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>

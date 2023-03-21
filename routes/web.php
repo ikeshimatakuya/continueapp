@@ -1,8 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\After_login_Controller;
-use App\Http\Controllers\User\Before_login_Controller;
+use App\Http\Controllers\User\FinishUserRegisterController;
+use App\Http\Controllers\User\TrainingController;
+use App\Http\Controllers\User\MypageController;
+use App\Http\Controllers\User\PastActionController;
+use App\Http\Controllers\User\SettingController;
+use App\Http\Controllers\User\ManualController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,25 +23,35 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(Before_login_Controller::class)->prefix('auth')->name('auth.')->middleware('auth')->group(function(){
+
+Route::controller(FinishUserRegisterController::class)->prefix('auth')->name('auth.')->middleware('auth')->group(function(){
     Route::get('finish_user_register','finish_user_register')->name('finish_user_register');
     Route::post('finish_user_register','finish_user_register')->name('finish_user_register');
-    Route::get('action_register','action_register')->name('action_register');
-    Route::get('finish_action_register','finish_action_register')->name('finish_action_register');
 });
 
-// Route::routes(get('/home', [App\Http\Controllers\User\before_login_Controller::class, ''])->('register');
+Route::controller(TrainingController::class)->prefix('training_register')->middleware('auth')->group(function(){
+    Route::get('training_aim_register','create')->name('training_aim_register');
+    Route::get('finish_training_aim_register','createTrainingAim')->name('finish_training_aim_register');
+});
 
-
-Route::controller(After_login_Controller::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
+Route::controller(MypageController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
     Route::get('mypage','mypage')->name('mypage');
     Route::post('mypage','mypage')->name('mypage');
-    Route::get('past_action','past_history')->name('past_history');
-    Route::get('pie_chart','past_pie_chart')->name('pie_chart');
-    Route::get('various_setting','various_setting')->name('various_setting');
-    Route::get('user_manual','user_manual')->name('user_manual');
-    
 });
+
+Route::controller(PastActionController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
+    Route::get('past_history','past_history')->name('past_history');
+    Route::get('past_pie_chart','past_pie_chart')->name('past_pie_chart');
+});
+
+Route::controller(SettingController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
+    Route::get('user_setting','setting')->name('setting');
+});
+
+Route::controller(ManualController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
+    Route::get('user_manual','user_manual')->name('user_manual');
+});
+
 
 Auth::routes();
 

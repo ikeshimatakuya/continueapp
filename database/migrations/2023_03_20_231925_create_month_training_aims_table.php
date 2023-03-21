@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('month_training_aims', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at');
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('month_training_aim_start_at');
+            $table->string('month_training_aim_finish_at');
+            $table->string('month_training_aim');
+            $table->string('month_training_aim_base');
+            $table->string('month_training_aim_upper');
+            $table->string('month_training_aim_lower');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('month_training_aims');
     }
 };
