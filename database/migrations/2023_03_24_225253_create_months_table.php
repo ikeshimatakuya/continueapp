@@ -10,11 +10,12 @@ return new class extends Migration
      * Run the migrations.
      *
      * @return void
-     */
+     */ 
     public function up()
     {
-        Schema::create('month_training_aims', function (Blueprint $table) {
+        Schema::create('months', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id');
             $table->string('month_training_aim_start_at');
             $table->string('month_training_aim_finish_at');
             $table->string('month_training_aim');
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('month_training_aims');
+        Schema::dropIfExists('months');
     }
 };
