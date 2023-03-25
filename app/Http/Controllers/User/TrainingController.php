@@ -18,7 +18,8 @@ class TrainingController extends Controller
     
     public function createTrainingAim(Request $request)
     {
-        // validation実行
+        // 
+        
 
         $this->validate($request, Month::$rules); // TrainingControllerのobjectが入っている
  
