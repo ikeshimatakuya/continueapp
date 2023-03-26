@@ -21,28 +21,28 @@
             <div>
                 <label>習慣化したいこと</label>
                 <div>
-                    <input type="text" name="month_training_aim" value="{{ old('month_training_aim') }}" size="30"><br>
+                    <input type="text" name="training_aim" value="{{ old('training_aim') }}" size="30"><br>
                 </div>
             </div>
             
             <div>
                 <label>基本トレーニング</label>
                 <div>
-                    <input type="text" name="month_training_aim_base" value="{{ old('month_training_aim_base') }}" size="30"><br>
+                    <input type="text" name="training_aim_base" value="{{ old('training_aim_base') }}" size="30"><br>
                 </div>
             </div>
             
             <div>
                 <label>上位トレーニング</label>
                 <div>
-                    <input type="text" name="month_training_aim_upper" value="{{ old('month_training_aim_upper') }}" size="30"><br>
+                    <input type="text" name="training_aim_upper" value="{{ old('training_aim_upper') }}" size="30"><br>
                 </div>
             </div>
             
             <div>
                 <label>下位トレーニング</label>
                 <div>
-                    <input type="text" name="month_training_aim_lower" value="{{ old('month_training_aim_lower') }}" size="30"><br>
+                    <input type="text" name="training_aim_lower" value="{{ old('training_aim_lower') }}" size="30"><br>
                 </div>
             </div>
             

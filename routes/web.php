@@ -34,10 +34,17 @@ Route::controller(TrainingController::class)->prefix('training_register')->middl
     Route::get('finish_training_aim_register','createTrainingAim')->name('finish_training_aim_register');
 });
 
+Route::controller(TrainingController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
+   Route::get('mypage','mypage')->name('mypage'); 
+});
+
+
+/*
 Route::controller(MypageController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
     Route::get('mypage','mypage')->name('mypage');
     Route::post('mypage','mypage')->name('mypage');
 });
+*/
 
 Route::controller(PastActionController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
     Route::get('past_history','past_history')->name('past_history');
