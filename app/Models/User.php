@@ -43,6 +43,6 @@ class User extends Authenticatable
     
     public function months()
     {
-        return $this->hasMany('App\Models\Month');
+        return $this->hasMany('App\Models\Training');
     }
 }

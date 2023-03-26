@@ -166,10 +166,10 @@ return [
     */
 
     'attributes' => [
-        "month_training_aim" => '習慣化したいこと',
-        "month_training_aim_base" => '基本トレーニング',
-        "month_training_aim_upper" => '上位トレーニング',
-        "month_training_aim_lower" => '下位トレーニング',
+        "training_aim" => '習慣化したいこと',
+        "training_aim_base" => '基本トレーニング',
+        "training_aim_upper" => '上位トレーニング',
+        "training_aim_lower" => '下位トレーニング',
     ],
 
 ];

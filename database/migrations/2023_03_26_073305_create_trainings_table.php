@@ -10,18 +10,20 @@ return new class extends Migration
      * Run the migrations.
      *
      * @return void
-     */ 
+     */
     public function up()
     {
-        Schema::create('months', function (Blueprint $table) {
+        Schema::create('trainings', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->string('month_training_aim_start_at');
-            $table->string('month_training_aim_finish_at');
-            $table->string('month_training_aim');
-            $table->string('month_training_aim_base');
-            $table->string('month_training_aim_upper');
-            $table->string('month_training_aim_lower');
+            $table->string('training_year');
+            $table->string('training_month');
+            $table->string('training_start_at');
+            $table->string('training_finish_at');
+            $table->string('training_aim');
+            $table->string('training_aim_base');
+            $table->string('training_aim_upper');
+            $table->string('training_aim_lower');
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('months');
+        Schema::dropIfExists('trainings');
     }
 };

@@ -8,32 +8,40 @@
             <h2>画面：マイページ</h2>
         </div><br>
         
-        {{--
         <div>
-            <table>
-                <thead>
-                    <th width="2%">ID</th>
-                    <th width="9%">開始日</th>
-                    <th width="9%">終了日</th>
-                    <th width="20%">1ヶ月の目標</th>
-                    <th width="20%">基本トレーニング</th>
-                    <th width="20%">上位トレーニング</th>
-                    <th width="20%">下位トレーニング</th>
-                </thead>
-                <tbody>
-                    <th>{{ $training->id }}</th>
-                    <td>{{ $training->month_training_aim_start_at }}</td>
-                    <td>{{ $training->month_training_aim_finish_at }}</td>
-                    <td>{{ $training->month_training_aim }}</td>
-                    <td>{{ $training->month_training_aim_base }}</td>
-                    <td>{{ $training->month_training_aim_upper }}</td>
-                    <td>{{ $training->month_training_aim_lower }}</td><br>
-                </tbody>
-            </table>
-        </div>
-        --}}
-        
-        <div>
+
+            @foreach($trainings as $training)
+                {{--
+                @if ($training['training_year'] == $year )
+                
+                    @if ( $training['training_month']  == $month ) --}}
+                    
+                        <p>ユーザーID：{{ $training->user_id }}</p>
+                        <p>開始年：{{ $training->training_year }}</p>
+                        <p>開始月：{{ $training->training_month }}</p>
+                        <p>開始日時：{{ $training->training_start_at }}</p>
+                        <p>終了日時：{{ $training->training_finish_at }}</p>
+                        <p>習慣化したい事：{{ $training->training_aim }}</p>
+                        <p>基本目標：{{ $training->training_aim_base }}</p>
+                        <p>上位目標：{{ $training->training_aim_upper }}</p>
+                        <p>下位目標：{{ $training->training_aim_lower }}</p>
+                    {{--
+                    @endif
+                
+                @endif
+                --}}
+                {{--
+                <p>ユーザーID：{{ $month->user_id }}</p>
+                <p>開始日時：{{ $month->month_training_aim_start_at }}</p>
+                <p>終了日時：{{ $month->month_training_aim_finish_at }}</p>
+                <p>習慣化したい事：{{ $month->month_training_aim }}</p>
+                <p>基本目標：{{ $month->month_training_aim_base }}</p>
+                <p>上位目標：{{ $month->month_training_aim_upper }}</p>
+                <p>下位目標：{{ $month->month_training_aim_lower }}</p>
+                --}}
+                
+            @endforeach
+            <br>
             <button type="submit">更新</button>
         </div>
     </div>
