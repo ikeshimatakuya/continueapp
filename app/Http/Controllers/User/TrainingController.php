@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-use App\Models\Training;
 use App\Models\User;
+use App\Models\Training;
+use App\Models\Action;
 
 class TrainingController extends Controller
 {
@@ -39,29 +40,35 @@ class TrainingController extends Controller
         $finish_date = Carbon::now()->endOfMonth();
         $training->training_finish_at = $finish_date->format('Y-m-d');
         
-        // DBに保存
+        // $tariningにフォームで入力したデータを代入
         $training->fill($training_form)->save();
-        dd($training);
-        $training->save();
+        // dd($training); // $trainingが正確に取れている事を確認
+        // DBに保存
+        // $training->save();
         
         return view('training_register/finish_training_aim_register');
     }
     
     public function mypage(Request $request)
     {
-        // 登録したトレーニング目標とかのデータを含めてマイページ画面に遷移
+        // ログインユーザーのレコードが最新のデータを取得
+        //$trainings = Auth::user()->trainings; // この文だとユーザーが保持しているすべてのtrainingデータを取得してしまう
+        $trainings = Auth::user()->trainings()->orderBy('created_at', 'desc')->first(); 
         
-        // ユーザーごとにデータが格納されている事を確認
-        $trainings = Auth::user()->trainings;
-        dd($trainings);
-        
-        
+        //dd($trainings);
+
         // 現在の年月をそれぞれ取得
         $now = Carbon::now();
-        $year = $now->year; // 取れている事を確認済み
-        $month = $now->month; // 取れている事を確認ずみ
+        $year = $now->year;   // 現在の年
+        $month = $now->month; // 現在の月
         
-        return view('home/mypage',['trainings' => $trainings, 'year' => $year, 'month' => $month] );
+        // 以下、if文でリダイレクトさせるか判定
+        
+        
+        
+        $actions = new Action;
+        
+        return view('home/mypage',['trainings' => $trainings] );
     }
     
 }

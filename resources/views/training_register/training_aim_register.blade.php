@@ -9,7 +9,7 @@
         </div>
         
         {{-- エラーがあれば表示 --}}
-        <form action="{{ route('finish_training_aim_register') }}">
+        <form action="{{ route('finish_training_aim_register') }}" method="post">
             @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)
@@ -46,6 +46,7 @@
                 </div>
             </div>
             
+            {{-- トレーニング登録用のボタン--}}
             <input type="submit" value="登録">
             
         </form>

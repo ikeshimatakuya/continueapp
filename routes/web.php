@@ -31,7 +31,7 @@ Route::controller(FinishUserRegisterController::class)->prefix('auth')->name('au
 
 Route::controller(TrainingController::class)->prefix('training_register')->middleware('auth')->group(function(){
     Route::get('training_aim_register','create')->name('training_aim_register');
-    Route::get('finish_training_aim_register','createTrainingAim')->name('finish_training_aim_register');
+    Route::post('finish_training_aim_register','createTrainingAim')->name('finish_training_aim_register');
 });
 
 Route::controller(TrainingController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
