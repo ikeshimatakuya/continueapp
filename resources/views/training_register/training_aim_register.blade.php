@@ -10,6 +10,7 @@
         
         {{-- エラーがあれば表示 --}}
         <form action="{{ route('finish_training_aim_register') }}" method="post">
+            @csrf
             @if (count($errors) > 0)
                 <ul>
                     @foreach($errors->all() as $e)

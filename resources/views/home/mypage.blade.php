@@ -9,6 +9,7 @@
         </div><br>
         
         <form action="{{ route('home.mypage') }}" method="post">
+            @csrf
             <div>
             @foreach($trainings as $training)
 

@@ -53,9 +53,9 @@ class TrainingController extends Controller
     {
         // ログインユーザーのレコードが最新のデータを取得
         //$trainings = Auth::user()->trainings; // この文だとユーザーが保持しているすべてのtrainingデータを取得してしまう
-        $trainings = Auth::user()->trainings()->orderBy('created_at', 'desc')->first(); 
-        
+        $trainings = Auth::user()->trainings('user_id')->orderBy('created_at', 'desc')->first(); 
         //dd($trainings);
+        
 
         // 現在の年月をそれぞれ取得
         $now = Carbon::now();
