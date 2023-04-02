@@ -45,7 +45,7 @@
                 <div>
                     <input type="text" name="training_aim_lower" value="{{ old('training_aim_lower') }}" size="30"><br>
                 </div>
-            </div>
+            </div><br><br>
             
             {{-- トレーニング登録用のボタン--}}
             <input type="submit" value="登録">

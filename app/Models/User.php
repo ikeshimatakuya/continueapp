@@ -46,7 +46,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Training');
     }
     
-    // created_at が最新のレコードを取得
 
     
 }

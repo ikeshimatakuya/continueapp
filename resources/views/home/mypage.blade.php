@@ -22,18 +22,24 @@
                 <p>基本目標：{{ $training->training_aim_base }}</p>
                 <p>上位目標：{{ $training->training_aim_upper }}</p>
                 <p>下位目標：{{ $training->training_aim_lower }}</p><br><br>
-                        
-                <select name="">
+                
+                
+                {{--
+                $today_actionがnullの場合、登録処理
+                それ以外は更新処理
+                --}}
+                
+                <select name="action_type">
                     <option hidden>選択してください</option>
-                    <option>{{ $training->training_aim_base }}</option>
-                    <option>{{ $training->training_aim_upper }}</option>
-                    <option>{{ $training->training_aim_lower }}</option>
+                    <option value="B">{{ $training->training_aim_base }}</option>
+                    <option value="U">{{ $training->training_aim_upper }}</option>
+                    <option value="L">{{ $training->training_aim_lower }}</option>
                 </select><br><br><br>
                 
-                {{-- actionがその日登録されていなかったら「登録」、すでに登録されていたら「更新」を表示--}}
-                {{--
+                
+                
                 <input type="submit" value="登録">
-                --}}
+                
 
             @endforeach
             </div>

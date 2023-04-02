@@ -25,4 +25,9 @@ class Training extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+    
+    public function actions()
+    {
+        return $this->hasmany(Action::class);
+    }
 }

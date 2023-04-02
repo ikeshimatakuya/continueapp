@@ -10,4 +10,9 @@ class Action extends Model
     use HasFactory;
     
     protected $guarded = array('id');
+    
+    public function trainings()
+    {
+        return $this->belongsTo(Training::class);
+    }
 }
