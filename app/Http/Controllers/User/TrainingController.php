@@ -50,6 +50,7 @@ class TrainingController extends Controller
     
     public function mypage(Request $request)
     {
+        // 「Training」
         // 現在の年月をそれぞれ取得
         $now = Carbon::now();
         $year = $now->year;   // 現在の年
@@ -66,46 +67,44 @@ class TrainingController extends Controller
         //dd($trainings);
         // 4月のTrainingデータを保持していないユーザーでログインすると、Mypageでデータが何も表示されない為、ちゃんとデータは取れてそう
         
-        // $trainingsがnullの場合はトレーニング登録画面にリダイレクト->なんでかできない
-        if ($trainings == null){
+        // $trainingsの#itemsが空の場合はトレーニング登録画面にリダイレクト
+        if ($trainings->isEmpty()){
             return redirect('training_register/training_aim_register');     
         }
         
         
         /*
-        予めEloquentでログインユーザー毎のactionテーブルから$todayと同じ値のレコードを$today_actionに代入
-        $today_actionがnullの場合、action登録処理
-        そうでない場合、action編集処理
-        
-        検索条件：
-        ログインユーザーid
-        action_dateが今日のデータ(Y-m-d)
+        「Action」
+        認証済みユーザー毎にactionsテーブルから最近作成されたactionレコードを$latest_actionに代入
         */
         
         /*
-        // 一回アクション登録する
+        $user = Auth::user();
+        $user->load(['trainings.actions' => function ($query) {
+            $query->orderBy('created_at', 'desc')->take(1);
+        }]);
+        $latest_action = $user->trainings->pluck('actions')->collapse();
+ 
+        //dd($latest_action);
+        
+    
+        
+        
+        // アクション登録処理
         $actions = new Action;
         $actions_form = $request->all();
         $actions->action_date = $today;
-        $actions->training_id = $trainings->id;
-                    
         
+        // $trainingsからidだけ抽出して、traning_idに代入
+        foreach ($trainings as $training) {
+            $actions->training_id = $training->id;
+        }
+
         $actions->fill($actions_form)->save();
         */
         
         
-        /*
-        $today_action = 
-        
-        // 毎日のアクション登録処理
-        $actions = new Action;
-        $actions_form = $request->all();
-        $actions->training_id = Training::where('user_id', Auth::user())
-                                ->where('id', max(Trainings::id))
-                                ->get(['id']);
-        $actions->fill($actions_form)->save();
-        */
-        
+  
         
         return view('home/mypage',['trainings' => $trainings] );
     }
