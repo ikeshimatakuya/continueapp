@@ -10,7 +10,8 @@
         <br>
         <p>-----今月のトレーニング登録の内容-----</p>
         @foreach ($trainings as $training)
-        
+            
+            <p>トレーニングID：{{ $training->id }}</p>
             <p>ユーザーID：{{ $training->user_id }}</p>
             <p>開始年：{{ $training->training_year }}</p>
             <p>開始月：{{ $training->training_month }}</p>
@@ -24,7 +25,7 @@
         @endforeach
         
         {{--
-        計算処理関連の記述
+        「円グラフ用の計算処理の記述」
         --}}
         
         
@@ -38,14 +39,14 @@
         bladeではそのレコードのaction_dateカラムの値と$todayを比較して上記判定を行う。
         --}}
         
-        <p>-----ここからフォーム------</p>
+        <p>-----毎日のアクションの登録 / 更新フォーム------</p>
         
         <form action="{{ route('home.mypage') }}" method="post">
             @csrf
             @if ($latest_action == null || $latest_action->action_date != date('Y-m-d'))
             
             {{-- アクション登録用フォーム--}}
-            <P>「今日のアクション登録はまだ完了しておりません」</P>
+            <P>「今日のアクション登録はまだ完了していません」</P>
             <div>
                 @foreach($trainings as $training)
                 
@@ -62,7 +63,28 @@
             
             {{-- アクション更新用フォーム --}}
             @else
-            <p>「今日のアクション登録は完了しています。<br>編集する場合はプルダウリストから行ったトレーニングを選択し、更新ボタンを押してください」</p>
+            <p>「今日のアクション登録は完了しています。<br>編集する場合はプルダウンリストから行ったトレーニングを選択し、更新ボタンを押してください」</p>
+            
+            {{-- 今日登録したアクションの表示をしようとしたらなんかエラー出る
+            <div>
+                @foreach($latest_action as $today_action)
+                    
+                    <p>アクション日付  ：{{ $today_action->action_date }}</p>
+                    <p>アクションタイプ：{{ $today_action->action_type }}</p>
+                    
+                @endforeach
+            </div><br>
+            --}}
+            
+            {{-- バリデーション表示 --}}
+            @if (count($errors) > 0)
+                <ul>
+                @foreach($errors->all() as $e)
+                    <li>{{ $e }}</li>
+                @endforeach
+                </ul>
+            @endif
+            
             <div>
                 @foreach($trainings as $training)
                 
@@ -79,6 +101,6 @@
 
             @endif
         </form>
-        
+        <br><br><br><br>
     </div>
 @endsection

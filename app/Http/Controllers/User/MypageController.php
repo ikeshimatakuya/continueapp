@@ -13,6 +13,12 @@ use App\Models\Action;
 
 class MypageController extends Controller
 {
+    /*
+    private $year;
+    private $month;
+    private $trainings;
+    */
+    
     public function getMypage()
     {
         // 「Training」
@@ -51,12 +57,8 @@ class MypageController extends Controller
             ->with('training')
             ->latest() // カラム名が指定されない場合、created_atカラムがデフォルトで使用される
             ->first(); // 一度もアクション登録したことがないユーザーの$actionの中身はnull
-        //dd($latest_action);
-        
-        
-        // $trainingsと$latest_actionを結合
-        
-        
+       // dd($latest_action);
+
         return view( 'home/mypage', ['trainings' => $trainings], ['latest_action' => $latest_action] );
     }
     
@@ -64,20 +66,26 @@ class MypageController extends Controller
     
     public function postMypage(Request $request)
     {
+        
+        // Validationを行う
+        
+        
+        
+        
         // 「Training」
         // 現在の年月をそれぞれ取得(getで定義したやつ使えへんのかな)
         $now = Carbon::now();
         $year = $now->year;   // 現在の年
         $month = $now->month; // 現在の月
         $today = $now->format('Y-m-d'); // Y-m-d
-        
+
         // 認証済みのユーザーIDをもとに
         // 認証済みのユーザーのtrainingテーブルの'training_year','month'と$year,$monthが同じレコードを取得。
         $trainings = Training::where('user_id', Auth::id())
                     ->where('training_year', '=', $year)
                     ->where('training_month' , '=', $month)
                     ->get();
-        
+        //dd($trainings);
         
         /*
         認証済みのユーザーのactionテーブルの最新のレコードのaction_dateの値が
@@ -90,20 +98,31 @@ class MypageController extends Controller
         })->first();
         //dd($latest_action);
         
+        if($latest_action == null || $latest_action->action_date != $today) {
+            // アクション登録処理
+            $actions = new Action;
+            $actions_form = $request->all();
+            $actions->action_date = $today;
         
-        // アクション登録処理
-        $actions = new Action;
-        $actions_form = $request->all();
-        $actions->action_date = $today;
-        
-        // $trainingsからidだけ抽出して、traning_idに代入
-        foreach ($trainings as $training) {
-            $actions->training_id = $training->id;
-        }
+            // $trainingsからidだけ抽出して、traning_idに代入
+            foreach ($trainings as $training) {
+                $actions->training_id = $training->id;
+            }
 
-        $actions->fill($actions_form)->save();
+            $actions->fill($actions_form)->save();
+            
+        } else {
+            // アクション更新処理
+            $actions_form = $request->all();
+            $latest_action->fill($actions_form)->save();
+            //dd($latest_action);
+            
+        }
         
-        return redirect('home/mypage',['trainings' => $trainings] );
-        
+        //return view('home/mypage',['trainings' => $trainings], ['latest_action' => $latest_action] );
+        return redirect('home/mypage')->with([
+            'trainings' => $trainings,
+            'latest_action' => $latest_action
+        ]);
     }
 }

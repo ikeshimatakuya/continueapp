@@ -15,4 +15,8 @@ class Action extends Model
     {
         return $this->belongsTo(Training::class);
     }
+    
+    public static $rules = array(
+        'action_type' => ['required', 'in:B,U,L'],
+    );
 }
