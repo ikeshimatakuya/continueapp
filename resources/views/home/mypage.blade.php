@@ -76,15 +76,6 @@
             </div><br>
             --}}
             
-            {{-- バリデーション表示 --}}
-            @if (count($errors) > 0)
-                <ul>
-                @foreach($errors->all() as $e)
-                    <li>{{ $e }}</li>
-                @endforeach
-                </ul>
-            @endif
-            
             <div>
                 @foreach($trainings as $training)
                 
@@ -101,6 +92,16 @@
 
             @endif
         </form>
+        
+        {{-- バリデーション表示 --}}
+        @if (count($errors) > 0)
+            <ul>
+            @foreach($errors->all() as $e)
+                <li>{{ $e }}</li>
+            @endforeach
+            </ul>
+        @endif
+            
         <br><br><br><br>
     </div>
 @endsection

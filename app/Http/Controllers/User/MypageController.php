@@ -68,9 +68,7 @@ class MypageController extends Controller
     {
         
         // Validationを行う
-        
-        
-        
+        $this->validate($request, Action::$rules);
         
         // 「Training」
         // 現在の年月をそれぞれ取得(getで定義したやつ使えへんのかな)

@@ -17,6 +17,6 @@ class Action extends Model
     }
     
     public static $rules = array(
-        'action_type' => ['required', 'in:B,U,L'],
+        'action_type' => ['filled', 'in:B,U,L'],
     );
 }
