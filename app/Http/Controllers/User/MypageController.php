@@ -20,33 +20,44 @@ class MypageController extends Controller
         $now = Carbon::now();
         $year = $now->year;   // 現在の年
         $month = $now->month; // 現在の月
-        $today = $now->format('Y-m-d'); // Y-m-d
         
         // 認証済みのユーザーIDをもとに
         // 認証済みのユーザーのtrainingテーブルの'training_year','month'と$year,$monthが同じレコードを取得。
-        $trainings = Training::where('user_id', Auth::id())
-                    ->where('training_year', '=', $year)
-                    ->where('training_month' , '=', $month)
-                    ->get();
-                    
-        //dd($trainings);
+        $trainings = Auth::user()->trainings()
+                ->where('training_year', $year)
+                ->where('training_month', $month)
+                ->get();
+        //dd($trainings);      
+        //$a = is_array($trainings);            
+        //dd($a);
         
-        // $trainingsの#itemsが空の場合はトレーニング登録画面にリダイレクト
+        // $trainingsの#itemsが空の場合、今月のトレーニング登録がまだされていない為、トレーニング登録画面にリダイレクト
         if ($trainings->isEmpty()){
             return redirect('training_register/training_aim_register');     
         }
         
         
-        // 以下、viewに渡すためのデータ(action最新レコード)を取得（エラーでるよー）
+        // 以下、認証済みユーザーが保持している最新のactionレコードを取得
+        /* chatGPT先輩より
+        Auth::user()で認証済みのユーザーを取得し、そのユーザーが関連付けられているTrainingモデルが持つ最新のActionレコードを取得しています。
+        whereHasメソッドを使用して、ログインしているユーザーが所有するトレーニングが存在するActionレコードを絞り込んでいます。
+        そして、withメソッドを使用して、Actionモデルのtrainingリレーション先のデータを取得しています。
+        最後に、latestメソッドを使用して、最新のActionレコードを取得しています。
+        */
         $user = Auth::user();
-        $user->load(['trainings.actions' => function ($query) {
-            $query->orderBy('created_at', 'desc')->take(1);
-        }]);
-        $latest_action = $user->trainings->pluck('actions')->collapse();
-        dd($latest_action->action_date);
+        $latest_action = Action::whereHas('training', function($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->with('training')
+            ->latest() // カラム名が指定されない場合、created_atカラムがデフォルトで使用される
+            ->first(); // 一度もアクション登録したことがないユーザーの$actionの中身はnull
+        //dd($latest_action);
         
         
-        return view('home/mypage', ['trainings' => $trainings] );
+        // $trainingsと$latest_actionを結合
+        
+        
+        return view( 'home/mypage', ['trainings' => $trainings], ['latest_action' => $latest_action] );
     }
     
     
@@ -77,7 +88,7 @@ class MypageController extends Controller
         $latest_action = $user->trainings->flatMap(function ($training) {
             return $training->actions->sortByDesc('created_at')->take(1);
         })->first();
-        dd($latest_action);
+        //dd($latest_action);
         
         
         // アクション登録処理

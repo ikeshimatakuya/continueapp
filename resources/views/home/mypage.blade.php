@@ -8,6 +8,7 @@
             <h2>画面：マイページ</h2>
         </div><br>
         <br>
+        <p>-----今月のトレーニング登録の内容-----</p>
         @foreach ($trainings as $training)
         
             <p>ユーザーID：{{ $training->user_id }}</p>
@@ -22,21 +23,29 @@
         
         @endforeach
         
-        
         {{--
-        認証済みユーザーののactionテーブルの最新のレコードのaction_dateの値が
-        ①$todayと違うかそもそも無い場合は登録用のフォームを表示
-        ②それ以外は編集用のフォームを表示
-        
-        ということはgetMypageメソッド内で
-        認証済みユーザーののactionテーブルの最新のレコードを取得して渡す必要あり。
-        bladeではそのレコードからaction_dateと$todayを比較して上記判定を行う。
+        計算処理関連の記述
         --}}
         
         
-        {{-- アクション登録フォーム --}}
+        {{--
+        認証済みユーザーののactionテーブルの最新のレコードのaction_dateの値が
+        ①{{ date('Y-m-d') }}と違うかそもそも無い場合は登録用のフォームを表示
+        ②それ以外は編集用のフォームを表示
+        
+        ということはgetMypageメソッド内で
+        認証済みユーザーののactionテーブルの最新のレコードを取得してviewに渡す必要がある。
+        bladeではそのレコードのaction_dateカラムの値と$todayを比較して上記判定を行う。
+        --}}
+        
+        <p>-----ここからフォーム------</p>
+        
         <form action="{{ route('home.mypage') }}" method="post">
             @csrf
+            @if ($latest_action == null || $latest_action->action_date != date('Y-m-d'))
+            
+            {{-- アクション登録用フォーム--}}
+            <P>「今日のアクション登録はまだ完了しておりません」</P>
             <div>
                 @foreach($trainings as $training)
                 
@@ -48,11 +57,27 @@
                     </select><br><br><br>
                 
                 @endforeach
-            
                 <input type="submit" value="登録">
+            </div>
             
+            {{-- アクション更新用フォーム --}}
+            @else
+            <p>「今日のアクション登録は完了しています。<br>編集する場合はプルダウリストから行ったトレーニングを選択し、更新ボタンを押してください」</p>
+            <div>
+                @foreach($trainings as $training)
+                
+                    <select name="action_type">
+                        <option hidden>選択してください</option>
+                        <option value="B">{{ $training->training_aim_base }}</option>
+                        <option value="U">{{ $training->training_aim_upper }}</option>
+                        <option value="L">{{ $training->training_aim_lower }}</option>
+                    </select><br><br><br>
+                
+                @endforeach
+                <input type="submit" value="更新">
             </div>
 
+            @endif
         </form>
         
     </div>

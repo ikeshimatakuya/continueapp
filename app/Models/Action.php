@@ -11,7 +11,7 @@ class Action extends Model
     
     protected $guarded = array('id');
     
-    public function trainings()
+    public function training()
     {
         return $this->belongsTo(Training::class);
     }
