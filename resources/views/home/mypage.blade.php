@@ -7,42 +7,85 @@
         <div>
             <h2>画面：マイページ</h2>
         </div><br>
+        <br>
+        <p>-----今月のトレーニング登録の内容-----</p>
+        @foreach ($trainings as $training)
+            
+            <p>トレーニングID：{{ $training->id }}</p>
+            <p>ユーザーID：{{ $training->user_id }}</p>
+            <p>開始年：{{ $training->training_year }}</p>
+            <p>開始月：{{ $training->training_month }}</p>
+            <p>開始日時：{{ $training->training_start_at }}</p>
+            <p>終了日時：{{ $training->training_finish_at }}</p>
+            <p>習慣化したい事：{{ $training->training_aim }}</p>
+            <p>基本目標：{{ $training->training_aim_base }}</p>
+            <p>上位目標：{{ $training->training_aim_upper }}</p>
+            <p>下位目標：{{ $training->training_aim_lower }}</p><br><br>
         
-        <div>
+        @endforeach
+        
+        {{--
+        「円グラフ用の計算処理の記述」
+        --}}
+        
+        
+        
 
-            @foreach($trainings as $training)
-                {{--
-                @if ($training['training_year'] == $year )
+        <p>-----毎日のアクションの登録 / 更新フォーム------</p>
+        
+        {{-- action_dateの値で登録処理用の表示を更新用の表示を切り分けする --}}
+        <form action="{{ route('home.mypage') }}" method="post">
+            @csrf
+            @if ($latest_action == null || $latest_action->action_date != date('Y-m-d'))
+            
+            {{-- アクション登録用フォーム--}}
+            <P>「今日のアクション登録はまだ完了していません」</P>
+            <div>
+                @foreach($trainings as $training)
                 
-                    @if ( $training['training_month']  == $month ) --}}
-                    
-                        <p>ユーザーID：{{ $training->user_id }}</p>
-                        <p>開始年：{{ $training->training_year }}</p>
-                        <p>開始月：{{ $training->training_month }}</p>
-                        <p>開始日時：{{ $training->training_start_at }}</p>
-                        <p>終了日時：{{ $training->training_finish_at }}</p>
-                        <p>習慣化したい事：{{ $training->training_aim }}</p>
-                        <p>基本目標：{{ $training->training_aim_base }}</p>
-                        <p>上位目標：{{ $training->training_aim_upper }}</p>
-                        <p>下位目標：{{ $training->training_aim_lower }}</p>
-                    {{--
-                    @endif
+                    <select name="action_type">
+                        <option hidden>選択してください</option>
+                        <option value="B">{{ $training->training_aim_base }}</option>
+                        <option value="U">{{ $training->training_aim_upper }}</option>
+                        <option value="L">{{ $training->training_aim_lower }}</option>
+                    </select><br><br><br>
                 
+                @endforeach
+                <input type="submit" value="登録">
+            </div>
+            
+            {{-- アクション更新用フォーム --}}
+            @else
+            <p>「今日のアクション登録は完了しています。<br>編集する場合はプルダウンリストから行ったトレーニングを選択し、更新ボタンを押してください」</p>
+            
+            <div>
+                @foreach($trainings as $training)
+                
+                    <select name="action_type">
+                        <option hidden>選択してください</option>
+                        <option value="B">{{ $training->training_aim_base }}</option>
+                        <option value="U">{{ $training->training_aim_upper }}</option>
+                        <option value="L">{{ $training->training_aim_lower }}</option>
+                    </select><br><br><br>
+                
+                @endforeach
+                
+                {{-- バリデーション表示（日本語変換がまだ） --}}
+                @if (count($errors) > 0)
+                <ul>
+                    @foreach($errors->all() as $e)
+                    <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
                 @endif
-                --}}
-                {{--
-                <p>ユーザーID：{{ $month->user_id }}</p>
-                <p>開始日時：{{ $month->month_training_aim_start_at }}</p>
-                <p>終了日時：{{ $month->month_training_aim_finish_at }}</p>
-                <p>習慣化したい事：{{ $month->month_training_aim }}</p>
-                <p>基本目標：{{ $month->month_training_aim_base }}</p>
-                <p>上位目標：{{ $month->month_training_aim_upper }}</p>
-                <p>下位目標：{{ $month->month_training_aim_lower }}</p>
-                --}}
-                
-            @endforeach
-            <br>
-            <button type="submit">更新</button>
-        </div>
+                <input type="submit" value="更新">
+            </div>
+
+            @endif
+        </form>
+        
+        {{-- 今月のアクション履歴を全て表示(時間があれば表示) --}}
+
+        <br><br><br><br>
     </div>
 @endsection
