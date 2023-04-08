@@ -27,6 +27,12 @@
         {{--
         「円グラフ用の計算処理の記述」
         --}}
+        <p>-----円グラフに必要なデータ------</p>
+        <p>今月の日数：{{ $daysInMonth }}</p>
+        <p>今月のアクションした合計：{{ $action_count }}</p>
+        <p>今月の'B'のアクションした合計：{{ $actiontype_B_count }}</p>
+        <p>今月の'U'のアクションした合計：{{ $actiontype_U_count }}</p>
+        <p>今月の'L'のアクションした合計：{{ $actiontype_L_count }}</p><br><br>
         
         
         
@@ -66,7 +72,7 @@
                         <option value="B">{{ $training->training_aim_base }}</option>
                         <option value="U">{{ $training->training_aim_upper }}</option>
                         <option value="L">{{ $training->training_aim_lower }}</option>
-                    </select><br><br><br>
+                    </select><br><br>
                 
                 @endforeach
                 
@@ -84,7 +90,24 @@
             @endif
         </form>
         
-        {{-- 今月のアクション履歴を全て表示(時間があれば表示) --}}
+        <br><br>
+        <p>-----今月のアクション履歴を全て表示-----</p>
+        <table>
+            <thead>
+                <tr>
+                    <th width="80%">日付</th>
+                    <th width="20%">種別</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($action_histories as $action_history)
+                    <tr>
+                        <td>{{ $action_history->action_date }}</td>
+                        <td>{{ $action_history->action_type }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
 
         <br><br><br><br>
     </div>
