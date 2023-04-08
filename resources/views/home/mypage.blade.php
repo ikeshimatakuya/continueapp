@@ -29,18 +29,11 @@
         --}}
         
         
-        {{--
-        認証済みユーザーののactionテーブルの最新のレコードのaction_dateの値が
-        ①{{ date('Y-m-d') }}と違うかそもそも無い場合は登録用のフォームを表示
-        ②それ以外は編集用のフォームを表示
         
-        ということはgetMypageメソッド内で
-        認証済みユーザーののactionテーブルの最新のレコードを取得してviewに渡す必要がある。
-        bladeではそのレコードのaction_dateカラムの値と$todayを比較して上記判定を行う。
-        --}}
-        
+
         <p>-----毎日のアクションの登録 / 更新フォーム------</p>
         
+        {{-- action_dateの値で登録処理用の表示を更新用の表示を切り分けする --}}
         <form action="{{ route('home.mypage') }}" method="post">
             @csrf
             @if ($latest_action == null || $latest_action->action_date != date('Y-m-d'))
@@ -65,17 +58,6 @@
             @else
             <p>「今日のアクション登録は完了しています。<br>編集する場合はプルダウンリストから行ったトレーニングを選択し、更新ボタンを押してください」</p>
             
-            {{-- 今日登録したアクションの表示をしようとしたらなんかエラー出る
-            <div>
-                @foreach($latest_action as $today_action)
-                    
-                    <p>アクション日付  ：{{ $today_action->action_date }}</p>
-                    <p>アクションタイプ：{{ $today_action->action_type }}</p>
-                    
-                @endforeach
-            </div><br>
-            --}}
-            
             <div>
                 @foreach($trainings as $training)
                 
@@ -87,21 +69,23 @@
                     </select><br><br><br>
                 
                 @endforeach
+                
+                {{-- バリデーション表示（日本語変換がまだ） --}}
+                @if (count($errors) > 0)
+                <ul>
+                    @foreach($errors->all() as $e)
+                    <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+                @endif
                 <input type="submit" value="更新">
             </div>
 
             @endif
         </form>
         
-        {{-- バリデーション表示 --}}
-        @if (count($errors) > 0)
-            <ul>
-            @foreach($errors->all() as $e)
-                <li>{{ $e }}</li>
-            @endforeach
-            </ul>
-        @endif
-            
+        {{-- 今月のアクション履歴を全て表示(時間があれば表示) --}}
+
         <br><br><br><br>
     </div>
 @endsection
