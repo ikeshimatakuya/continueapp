@@ -42,7 +42,7 @@ Route::controller(MypageController::class)->prefix('home')->name('home.')->middl
 
 Route::controller(PastActionController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
     Route::get('past_history','past_history')->name('past_history');
-    Route::get('past_pie_chart','past_pie_chart')->name('past_pie_chart');
+    Route::get('past_pie_chart/{month_training}','past_pie_chart')->name('past_pie_chart');
 });
 
 Route::controller(SettingController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){

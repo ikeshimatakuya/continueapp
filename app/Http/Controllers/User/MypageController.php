@@ -222,6 +222,14 @@ class MypageController extends Controller
         //dd($actiontype_L_count);
         
         // 今月のアクション履歴を日毎に表示(時間があれば実装)
+                // 今月のアクションの履歴を表示させるための配列を用意
+        $action_histories = Action::whereHas('training', function($query) use ($user, $year, $month) {
+            $query->where('user_id', $user->id)
+                  ->where('training_year', '=', $year)
+                  ->where('training_month' , '=', $month);
+                  })
+                  ->get();
+        //dd($action_histories);
         
         return redirect('home/mypage')->with([
             'trainings' => $trainings,

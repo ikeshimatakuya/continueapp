@@ -24,14 +24,17 @@
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         {{-- この章の後半で作成するCSSを読み込みます(作成)--}}
         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
+        {{-- chart.jsの読み込み --}}
+        <script src="path/to/chart.js"></script>
     </head>
     <body>
         <div>
             <header>
-                <a>headerタグ</a>
+                
                 <h1>
-                    <a href="{{ route('home.mypage') }}">アプリケーション</a>
+                    <a href="{{ route('home.mypage') }}">習慣ログアプリ</a>
                 </h1>
+                
                 <nav>
                     <li>
                         <a href="{{ route('home.past_history') }}">過去履歴</a>
@@ -42,16 +45,25 @@
                     <li>
                         <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>
                     </li>
+                    <li>
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"
+                            data-method="POST">
+                            ログアウト
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
                 </nav>
-                <form action="{{ route('logout') }}" method="POST">
-                    @CSRF
-                    <button>ログアウト</button>
-                </form>
+
             </header>
-            <p>mainタグ</p>
+            
             <main>
                 @yield('content')
             </main>
+            
         </div>
     </body>
 </html>

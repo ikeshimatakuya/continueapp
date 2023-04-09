@@ -34,9 +34,27 @@
         <p>今月の'U'のアクションした合計：{{ $actiontype_U_count }}</p>
         <p>今月の'L'のアクションした合計：{{ $actiontype_L_count }}</p><br><br>
         
+         <script>
+      window.onload = function () {
+        let context = document.querySelector("#sushi_circle").getContext('2d')
+        new Chart(context, {
+          type: 'doughnut',
+          data: {
+            labels: ["サーモン", "ハマチ", "マグロ", "サバ", "エンガワ"],
+            datasets: [{
+              data: [60, 20, 15, 10, 5]
+            }]
+          },
+          options: {
+            responsive: false,
+          }
+        });
+      }
+    </script>
         
         
-
+        
+        <br>
         <p>-----毎日のアクションの登録 / 更新フォーム------</p>
         
         {{-- action_dateの値で登録処理用の表示を更新用の表示を切り分けする --}}
