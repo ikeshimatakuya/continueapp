@@ -5,22 +5,22 @@
 @section('content')
     <div>
         <div>
-            <h2>画面：過去履歴１画面</h2>
-        </div>
+            <h2>過去履歴</h2>
+        </div><br>
+
         <div>
-            <!-- テーブルのセルにリンク埋め込むのどうやってするんやろか？ -->
             <table>
-                <a href="{{ route('home.past_pie_chart')}}">（例）2023/01/01 ~ 2023/01/31</a>
+                @foreach( $all_trainings as $month_training )
                 <tr>
-                    <td>（例）2023/01/01 ~ 2023/01/31</td>
+                    {{-- リンク押下で$month_trainingのIDが渡される --}}
+                    <td><a href="{{ route( 'home.past_pie_chart', ['month_training' => $month_training]) }}">{{ $month_training->training_start_at }} 〜 {{ $month_training->training_finish_at }}</a></td>
                 </tr>
-                <tr>
-                    <td>（例）2023/01/01 ~ 2023/01/31</td>
-                </tr>
+                @endforeach
             </table>
-        </div>
+        </div><br>    
+
         <div>
-            <a href="{{ route('home.mypage') }}">マイページへ戻る</a>
+            <a href="{{ route( 'home.mypage' ) }}">マイページへ戻る</a>
         </div>
     </div>
 @endsection

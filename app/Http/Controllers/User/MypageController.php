@@ -35,7 +35,7 @@ class MypageController extends Controller
                 ->get();
         
         // $trainingsの#itemsが空の場合、今月のトレーニング登録がまだされていないのでトレーニング登録画面にリダイレクト
-        if ($trainings->isEmpty()){
+        if ($trainings->isEmpty()){ // $trainings->null やとエラーになるなんでや
             return redirect('training_register/training_aim_register');     
         }
         
@@ -99,11 +99,29 @@ class MypageController extends Controller
                   ->where('action_type', '=' , 'L')
                   ->count();
         //dd($actiontype_L_count);
+        
+        
+        // 今月のアクションの履歴を表示させるための配列を用意
+        $action_histories = Action::whereHas('training', function($query) use ($user, $year, $month) {
+            $query->where('user_id', $user->id)
+                  ->where('training_year', '=', $year)
+                  ->where('training_month' , '=', $month);
+                  })
+                  ->get();
+        //dd($action_histories);
+        
 
-        return view( 'home/mypage', ['trainings' => $trainings], ['latest_action' => $latest_action] );
+        return view('home/mypage')->with([
+            'trainings' => $trainings,
+            'latest_action' => $latest_action,
+            'daysInMonth' => $daysInMonth,
+            'action_count' => $action_count,
+            'actiontype_B_count' => $actiontype_B_count,
+            'actiontype_U_count' => $actiontype_U_count,
+            'actiontype_L_count' => $actiontype_L_count,
+            'action_histories' => $action_histories
+        ]);
     }
-    
-    
     
     public function postMypage(Request $request)
     {
@@ -204,10 +222,24 @@ class MypageController extends Controller
         //dd($actiontype_L_count);
         
         // 今月のアクション履歴を日毎に表示(時間があれば実装)
+                // 今月のアクションの履歴を表示させるための配列を用意
+        $action_histories = Action::whereHas('training', function($query) use ($user, $year, $month) {
+            $query->where('user_id', $user->id)
+                  ->where('training_year', '=', $year)
+                  ->where('training_month' , '=', $month);
+                  })
+                  ->get();
+        //dd($action_histories);
         
         return redirect('home/mypage')->with([
             'trainings' => $trainings,
-            'latest_action' => $latest_action
+            'latest_action' => $latest_action,
+            'daysInMonth' => $daysInMonth,
+            'action_count' => $action_count,
+            'actiontype_B_count' => $actiontype_B_count,
+            'actiontype_U_count' => $actiontype_U_count,
+            'actiontype_L_count' => $actiontype_L_count,
+            'action_histories' => $action_histories
         ]);
     }
 }

@@ -5,23 +5,21 @@
 @section('content')
     <div>
         <div>
-            <h2>画面：過去履歴２</h2>
+            <h2>{{ $past_training_start_at }} 〜 {{ $past_training_finish_at }}</h2>
         </div>
+        
         <div>
-            <div>
-                <h3>日付</h3><br>
-            </div>
-            <div>
-                <div>
-                    <p>円グラフ表示１</p>
-                </div>
-                <div>
-                    <p>円グラフ表示２</p><br>
-                </div>
-            </div>
-            <div>
-                <input type="button" onclick="history.back()" value="戻る">
-            </div>
+            <p>-----円グラフに必要なデータ------</p>
+            <p>日数：{{ $pastDaysInMonth }}</p>
+            <p>アクションした合計：{{ $past_action_count }}</p>
+            <p>'B'のアクションした合計：{{ $past_actiontype_B_count }}</p>
+            <p>'U'のアクションした合計：{{ $past_actiontype_U_count }}</p>
+            <p>'L'のアクションした合計：{{ $past_actiontype_L_count }}</p><br>
         </div>
+
+        <div>
+            <input type="button" onclick="history.back()" value="戻る">
+        </div>
+
     </div>
 @endsection
