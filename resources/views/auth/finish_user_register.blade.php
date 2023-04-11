@@ -1,4 +1,4 @@
-@extends('layouts.before_login_layout')
+@extends('layouts.layout')
 
 @section('title', '会員登録完了')
 

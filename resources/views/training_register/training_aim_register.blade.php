@@ -1,4 +1,4 @@
-@extends('layouts.before_login_layout')
+@extends('layouts.layout_register')
 
 @section('title', '目標/トレーニング登録')
 
@@ -7,6 +7,8 @@
         <div>
             <h1>目標/トレーニング登録画面</h1>
         </div>
+        
+        {{-- 月が切り替わってトレーニング登録する際に --}}
         
         {{-- エラーがあれば表示 --}}
         <form action="{{ route('finish_training_aim_register') }}" method="post">

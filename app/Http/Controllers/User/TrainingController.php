@@ -25,11 +25,12 @@ class TrainingController extends Controller
                 ->where('training_year', '=',  $year)
                 ->where('training_month', '=', $month)
                 ->get();
-        
-        // $this_month_trainingsに値があればmypageにリダイレクト
+        /*
+        // $this_month_trainingsに値があればmypageにリダイレクト → 多分いらない
         if ($this_month_trainings){ 
             return redirect('home/mypage');     
         }
+        */
         
         
         return view('training_register/training_aim_register');

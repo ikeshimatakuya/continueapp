@@ -1,4 +1,4 @@
-@extends('layouts.after_login_layout')
+@extends('layouts.layout')
 
 @section('title', 'マイページ')
 
@@ -34,24 +34,36 @@
         <p>今月の'U'のアクションした合計：{{ $actiontype_U_count }}</p>
         <p>今月の'L'のアクションした合計：{{ $actiontype_L_count }}</p><br><br>
         
-         <script>
-      window.onload = function () {
-        let context = document.querySelector("#sushi_circle").getContext('2d')
-        new Chart(context, {
-          type: 'doughnut',
-          data: {
-            labels: ["サーモン", "ハマチ", "マグロ", "サバ", "エンガワ"],
-            datasets: [{
-              data: [60, 20, 15, 10, 5]
-            }]
-          },
-          options: {
-            responsive: false,
-          }
-        });
-      }
-    </script>
+        <canvas id="myChart1"></canvas>
         
+        {{--
+        使用するデータ：$daysInMonth,$action_count
+        --}}
+        <script>
+            const ctx = document.getElementById('myChart1');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    {{--
+                    ラベルは無し
+                    --}}
+                    datasets: [{
+                        label: '# of Votes',
+                        data: [30,12],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+        
+
         
         
         <br>

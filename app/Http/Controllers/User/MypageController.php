@@ -14,12 +14,6 @@ use App\Models\Action;
 class MypageController extends Controller
 {
     
-    /*
-    private $year;
-    private $month;
-    private $trainings;
-    */
-    
     public function getMypage()
     {
         // 「Training」
@@ -28,7 +22,7 @@ class MypageController extends Controller
         $month = $now->month; // 現在の月
         
         // 認証済みのユーザーIDをもとに
-        // trainingテーブルの'training_year','month'と$year,$monthが同じレコードを取得。
+        // trainingテーブルの'training_year','training_month'と$year,$monthがそれぞれ同じレコードを取得。
         $trainings = Auth::user()->trainings()
                 ->where('training_year', '=',  $year)
                 ->where('training_month', '=', $month)

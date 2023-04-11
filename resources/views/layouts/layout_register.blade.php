@@ -28,7 +28,7 @@
     <body>
         <div>
             <header>
-                <h1>アプリケーション</h1>
+                <h1>{{ config('app.name') }}</h1>
                 <nav>
                     <li>
                         <a></a>
@@ -43,3 +43,4 @@
         </div>
     </body>
 </html>
+Footer
