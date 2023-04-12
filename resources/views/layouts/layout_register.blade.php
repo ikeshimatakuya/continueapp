@@ -29,11 +29,6 @@
         <div>
             <header>
                 <h1>{{ config('app.name') }}</h1>
-                <nav>
-                    <li>
-                        <a></a>
-                    </li>
-                </nav>
             </header>
             
             <main>
@@ -43,4 +38,3 @@
         </div>
     </body>
 </html>
-Footer
