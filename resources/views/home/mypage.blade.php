@@ -17,7 +17,7 @@
             const ctx = document.getElementById('myChart1');
             const daysInMonth = {{ $daysInMonth }};
             const action_count = {{ $action_count }};
-            const data1 = [action_count, daysInMonth];
+            const data1 = [action_count, daysInMonth - action_count];
             
             new Chart(ctx, {
                 type: 'doughnut',
@@ -26,14 +26,7 @@
                         data: data1,
                         borderWidth: 1
                     }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                },
+                }
             });
         </script>
         
@@ -54,14 +47,7 @@
                         data: data2,
                         borderWidth: 1
                     }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                },
+                }
             });
         </script>
         
@@ -124,7 +110,7 @@
         <table>
             <thead>
                 <tr>
-                    <th width="40%">日付</th>
+                    <th width="60%">日付</th>
                     <th width="20%">種別</th>
                     <td width="20%">取り組んだこと</td>
                 </tr>
@@ -143,6 +129,7 @@
                             @case('U')
                             {{ $training->training_aim_upper }}
                             @break
+                            
                             @default
                             {{ $training->training_aim_lower }}
                             @endswitch
