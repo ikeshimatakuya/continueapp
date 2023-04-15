@@ -1,10 +1,10 @@
-@extends('layouts.before_login_layout')
+@extends('layouts.layout')
 
 @section('title','ログイン')
 
 @section('content')
     <h2>ログイン画面</h2>
-    <div>{{ __('messages.login') }}</div>
+    {{--<div>{{ __('messages.login') }}</div>--}}
     <div>
         <!-- ログイン後、マイページへ遷移 -->
         <form method="POST" action="{{ route('login') }}">          

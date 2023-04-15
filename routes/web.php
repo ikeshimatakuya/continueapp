@@ -46,7 +46,8 @@ Route::controller(PastActionController::class)->prefix('home')->name('home.')->m
 });
 
 Route::controller(SettingController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){
-    Route::get('user_setting','setting')->name('setting');
+    Route::get('user_setting','index')->name('setting');
+    Route::put('user_setting', 'update')->name('update');
 });
 
 Route::controller(ManualController::class)->prefix('home')->name('home.')->middleware('auth')->group(function(){

@@ -1,4 +1,4 @@
-@extends('layouts.after_login_layout')
+@extends('layouts.layout')
 
 @section('title', 'ご利用ガイド')
 

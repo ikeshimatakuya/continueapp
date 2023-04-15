@@ -1,4 +1,4 @@
-@extends('layouts.after_login_layout')
+@extends('layouts.layout')
 
 @section('title', '過去履歴２')
 

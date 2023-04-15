@@ -15,6 +15,7 @@ class TrainingController extends Controller
 {
     public function create()
     {
+        $this->middleware('auth');
              
         $now = Carbon::now();
         $year = $now->year;   // 現在の年
@@ -25,11 +26,12 @@ class TrainingController extends Controller
                 ->where('training_year', '=',  $year)
                 ->where('training_month', '=', $month)
                 ->get();
-        
-        // $this_month_trainingsに値があればmypageにリダイレクト
+        /*
+        // $this_month_trainingsに値があればmypageにリダイレクト → 多分いらない
         if ($this_month_trainings){ 
             return redirect('home/mypage');     
         }
+        */
         
         
         return view('training_register/training_aim_register');
