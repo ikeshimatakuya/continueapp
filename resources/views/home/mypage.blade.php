@@ -3,41 +3,15 @@
 @section('title', 'マイページ')
 
 @section('content')
+    <br>
     <div>
         <div>
-            <h2>画面：マイページ</h2>
+            @foreach($trainings as $training)
+            <h3>{{ $training->training_start_at }} 〜 {{ $training->training_finish_at }}</h3>
+            @endforeach
         </div><br>
-        <br>
-        <p>-----今月のトレーニング登録の内容-----</p>
-        @foreach ($trainings as $training)
-            
-            <p>トレーニングID：{{ $training->id }}</p>
-            <p>ユーザーID：{{ $training->user_id }}</p>
-            <p>開始年：{{ $training->training_year }}</p>
-            <p>開始月：{{ $training->training_month }}</p>
-            <p>開始日時：{{ $training->training_start_at }}</p>
-            <p>終了日時：{{ $training->training_finish_at }}</p>
-            <p>習慣化したい事：{{ $training->training_aim }}</p>
-            <p>基本目標：{{ $training->training_aim_base }}</p>
-            <p>上位目標：{{ $training->training_aim_upper }}</p>
-            <p>下位目標：{{ $training->training_aim_lower }}</p><br><br>
         
-        @endforeach
-        
-        {{--
-        「円グラフ用の計算処理の記述」
-        --}}
-        <p>-----円グラフに必要なデータ------</p>
-        <p>今月の日数：{{ $daysInMonth }}</p>
-        <p>今月のアクションした合計：{{ $action_count }}</p>
-        <p>今月の'B'のアクションした合計：{{ $actiontype_B_count }}</p>
-        <p>今月の'U'のアクションした合計：{{ $actiontype_U_count }}</p>
-        <p>今月の'L'のアクションした合計：{{ $actiontype_L_count }}</p><br><br>
-        
-        
-        {{--
-        使用するデータ：$daysInMonth,$action_count => その月の日数の内、アクションした数の割合を円グラフで表示
-        --}}
+        {{-- 円グラフ１：月当たりの取り組み日数--}}
         <canvas id="myChart1"></canvas>
         <script>
             const ctx = document.getElementById('myChart1');
@@ -64,9 +38,7 @@
         </script>
         
         
-        {{--
-        使用するデータ：$daysInMonth,$action_count => その月の日数の内、アクションした数の割合を円グラフで表示
-        --}}
+        {{-- 円グラフ２：それぞれのアクションの割合 --}}
         <canvas id="myChart2"></canvas>
         <script>
             const ctx2 = document.getElementById('myChart2');
@@ -76,7 +48,7 @@
             const data2 = [actiontype_B_count, actiontype_U_count, actiontype_L_count];
             
             new Chart(ctx2, {
-                type: 'pie',
+                type: 'doughnut',
                 data: {
                     datasets: [{
                         data: data2,
@@ -93,12 +65,7 @@
             });
         </script>
         
-        
-        
-        
-        <br>
-        <p>-----毎日のアクションの登録 / 更新フォーム------</p>
-        
+
         {{-- action_dateの値で登録処理用の表示を更新用の表示を切り分けする --}}
         <form action="{{ route('home.mypage') }}" method="post">
             @csrf
@@ -115,7 +82,7 @@
             @if ($latest_action == null || $latest_action->action_date != date('Y-m-d'))
             
             {{-- アクション登録用フォーム--}}
-            <P>「今日のアクション登録はまだ完了していません」</P>
+            <p>「今日のアクション登録はまだ完了していません」</p>
             <div>
                 @foreach($trainings as $training)
                 
@@ -132,7 +99,7 @@
             
             {{-- アクション更新用フォーム --}}
             @else
-            <p>「今日のアクション登録は完了しています。<br>編集する場合はプルダウンリストから行ったトレーニングを選択し、更新ボタンを押してください」</p>
+            <p>今日のアクション登録は完了しています。<br>編集する場合はプルダウンリストから行ったトレーニングを選択し、更新ボタンを押してください</p>
             
             <div>
                 @foreach($trainings as $training)
@@ -157,8 +124,9 @@
         <table>
             <thead>
                 <tr>
-                    <th width="80%">日付</th>
+                    <th width="40%">日付</th>
                     <th width="20%">種別</th>
+                    <td width="20%">取り組んだこと</td>
                 </tr>
             </thead>
             <tbody>
@@ -166,6 +134,19 @@
                     <tr>
                         <td>{{ $action_history->action_date }}</td>
                         <td>{{ $action_history->action_type }}</td>
+                        <td>
+                            @switch($action_history->action_type)
+                            @case('B')
+                            {{ $training->training_aim_base }}
+                            @break
+                            
+                            @case('U')
+                            {{ $training->training_aim_upper }}
+                            @break
+                            @default
+                            {{ $training->training_aim_lower }}
+                            @endswitch
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

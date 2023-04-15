@@ -3,10 +3,14 @@
 @section('title', '各種設定画面')
 
 @section('content')
-    <h2>画面：各種設定</h2>
-    
-    <!-- post使った送信方法わからんかったし質問。先にDB作らなあかんかも-->
-    <form action="{{ route('home.mypage') }}">
-        <input type="submit" value="送信">
+    <form method="POST" action="{{ route('home.setting') }}">
+        @csrf
+        @method('PUT')
+        
+        <p>ユーザーID：{{ $user_id }}</p>
+
+
+
+        <input type="submit" value="変更">
     </form>
 @endsection

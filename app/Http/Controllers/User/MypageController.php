@@ -16,6 +16,8 @@ class MypageController extends Controller
     
     public function getMypage()
     {
+        $this->middleware('auth');
+        
         // 「Training」
         $now = Carbon::now();
         $year = $now->year;   // 現在の年

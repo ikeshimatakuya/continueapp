@@ -15,6 +15,7 @@ class TrainingController extends Controller
 {
     public function create()
     {
+        $this->middleware('auth');
              
         $now = Carbon::now();
         $year = $now->year;   // 現在の年
