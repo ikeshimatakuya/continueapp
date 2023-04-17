@@ -1,5 +1,6 @@
-@import url(https://fonts.bunny.net/css?family=Nunito);
-@charset "UTF-8"; /*!
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@charset "UTF-8";
+/*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
  * Copyright 2011-2022 Twitter, Inc.
@@ -10818,4 +10819,64 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+/* CSS */
+html {
+  font-size: 100%;
+}
+
+body {
+  line-heght: 1.5;
+}
+
+.header-wrapper {
+  max-width: 1100px;
+  margin: 0 auto; /*中央に設置する指定*/
+  padding: 0 4%; /*スマホ向け余白の設定*/
+  margin-bottom: 20;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-left, .header-right {
+  display: flex; /* h1とnavを一行に並べる */
+  align-items: center;
+}
+
+.header-left h1 a, .header-left .h1 a {
+  margin: 0;
+  text-decoration: none;
+}
+
+.header-right ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-right ul li {
+  margin: 0 10px;
+}
+
+.header-right ul li a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.header-right ul li a:hover {
+  color: #E7DA66;
+}
+
+.main-wrapper {
+  max-width: 1100px;
+  margin: 5% auto 0;
+}
+
+.content-center {
+  text-align: center;
 }

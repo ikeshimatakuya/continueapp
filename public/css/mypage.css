@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/* mypage */
+.graph-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .graph-container {
+    flex-direction: column;
+  }
+}
+.graph-wrapper {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .graph-wrapper {
+    width: 100%;
+  }
+}
+.action-form {
+  margin: 5% auto 5%;
+}
+
+#mypage-table {
+  margin: 1% auto 5%; /*中央に設置する指定*/
+}
+
+#mypage-th-left {
+  padding: 10px;
+}
+
+#mypage-th-right {
+  padding: 10px;
+}
+
+#mypage-td-left {
+  line-height: 1.25em;
+}
+
+#mypage-td-right {
+  line-height: 1.25em;
+}

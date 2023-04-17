@@ -24,56 +24,59 @@
         <!-- Styles -->
         {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        {{-- この章の後半で作成するCSSを読み込みます(作成)--}}
-        <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
-
+        {{-- 各画面のCSSを読み込み --}}
+        <link href="{{ secure_asset('css/mypage.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/auth.css') }}" rel="stylesheet">
     </head>
+    
     <body>
-        <div>
+        <div class="header-wrapper">
             <header>
-                
-                <h1>
-                    <a href="{{ route('home.mypage') }}">{{ config('app.name') }}</a>
-                </h1>
-                
                 <nav>
+                    <div class="header-left">
+                        <h1>
+                            <a href="{{ route('home.mypage') }}">{{ config('app.name') }}</a>
+                        </h1>
+                    </div>
+                    <div class="header-right">
                     <!-- Authentication Links -->
                     {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
-                    @guest
-                    <li>
-                        <a href="{{ route('login') }}">ログイン</a>
-                    </li>
-
-                    @else
-                    <li>
-                        <a href="{{ route('home.past_history') }}">過去履歴</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('home.setting') }}">各種設定</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>
-                    </li>
-                    <li>
-                        <a href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();"
-                            data-method="POST">
-                            ログアウト
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                    @endguest
+                        <ul>
+                            @guest
+                            <li>
+                                <a href="{{ route('login') }}">ログイン</a>
+                            </li>
+                            @else
+                            <li>
+                                <a href="{{ route('home.past_history') }}">過去履歴</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('home.setting') }}">各種設定</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"
+                                    data-method="POST">
+                                    ログアウト
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                                </form>
+                            </li>
+                            @endguest
+                        </ul>
+                        
+                    </div>
                 </nav>
-
             </header>
-            
-            <main>
-                @yield('content')
-            </main>
-            
         </div>
+        
+        <main class="main-wrapper">
+            @yield('content')
+        </main>
     </body>
 </html>

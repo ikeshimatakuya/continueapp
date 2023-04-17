@@ -8,7 +8,8 @@
         @method('PUT')
         
         <p>ユーザーID：{{ $user_id }}</p>
-
+        
+        <p>退会</p>
 
 
         <input type="submit" value="変更">
