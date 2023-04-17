@@ -35,14 +35,14 @@ class PastActionController extends Controller
         foreach($past_trainings as $past_training) {
             $year = $past_training->training_year;
             $month = $past_training->training_month;
-            $past_training_start_at = $past_training->training_start_at;
-            $past_training_finish_at = $past_training->training_finish_at;
         }
         
         
         // 円グラフに必要なデータの抽出(３つ)
         // ① 月の日数
-        $pastDaysInMonth = date('t', strtotime("$year-$month-01")); // Carbon使った方法なんかわからんかったからdate関数使用
+        $pastDaysInMonth_str = date('t', strtotime("$year-$month-01")); // Carbon使った方法なんかわからんかったからdate関数使用
+        //dd($pastDaysInMonth_str);
+        $pastDaysInMonth = intVal($pastDaysInMonth_str); // 文字列をint型に変換
         //dd($pastDaysInMonth);
         
         // ② 月のアクションのレコード数を取得
@@ -88,8 +88,7 @@ class PastActionController extends Controller
 
         
         return view('home/past_pie_chart')->with([
-            'past_training_start_at' => $past_training_start_at,
-            'past_training_finish_at' => $past_training_finish_at,
+            'past_trainings' => $past_trainings,
             'pastDaysInMonth' => $pastDaysInMonth,
             'past_action_count' => $past_action_count,
             'past_actiontype_B_count' => $past_actiontype_B_count,

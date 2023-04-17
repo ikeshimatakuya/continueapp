@@ -1,0 +1,26 @@
+/* login,register.blade.php */
+/*
+#label-email,
+#textbox-email {
+  display: inline-block;
+  vertical-align: middle;
+}
+#label-email {
+  margin-right: 10px; 
+}
+
+#label-password,
+#textbox-password {
+  display: inline-block;
+  vertical-align: middle;
+}
+#label-password {
+  margin-right: 10px; 
+}
+*/
+
+#email, #password {
+  width: 300px;
+  margin: 1% auto; /*中央に設置する指定*/
+}
+
