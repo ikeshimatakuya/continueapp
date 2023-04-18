@@ -1,25 +1,77 @@
 @charset "UTF-8";
-/* login,register.blade.php */
-/*
-#label-email,
-#textbox-email {
-  display: inline-block;
-  vertical-align: middle;
-}
-#label-email {
-  margin-right: 10px; 
+/*ログイン画面のCSS*/
+.login-form {
+  max-width: 400px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
 
-#label-password,
-#textbox-password {
-  display: inline-block;
-  vertical-align: middle;
+.login-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
-#label-password {
-  margin-right: 10px; 
+
+.form-group {
+  margin-bottom: 20px;
 }
-*/
-#email, #password {
-  width: 300px;
-  margin: 1% auto; /*中央に設置する指定*/
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type=email],
+input[type=password] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+button[type=submit] {
+  display: block;
+  margin: 0 auto;
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type=submit]:hover {
+  background: #3e8e41;
+}
+
+.checkbox {
+  margin-top: 10px;
+}
+
+#member-register {
+  display: block; /*会員登録リンクを中央揃え*/
+  margin: 20px auto;
+  text-align: center;
+}
+
+/*会員登録フォーム*/
+.register-form {
+  max-width: 400px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }

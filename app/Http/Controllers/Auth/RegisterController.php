@@ -35,7 +35,7 @@ class RegisterController extends Controller
     
     // 会員登録後に会員登録完了画面にリダイレクトさせる
     protected function redirectTo() {
-       return route('auth.finish_user_register');
+       return '/home/mypage';
     }
 
     /**

@@ -20,18 +20,16 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
-        {{-- この章の後半で作成するCSSを読み込みます(作成) -> これは時期に消していい--}}
-        <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/training_register.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div>
+        <div class="header-wrapper">
             <header>
                 <h1>{{ config('app.name') }}</h1>
             </header>
             
-            <main>
+            <main class="main-wrapper">
                 @yield('content')
             </main>
             

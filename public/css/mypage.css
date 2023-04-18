@@ -42,3 +42,36 @@
 #mypage-td-right {
   line-height: 1.25em;
 }
+
+/*新規会員用画面*/
+.start-guide {
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.start-guide h2 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.guide-text {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.guide-text p {
+  line-height: 1.2rem;
+}
+
+.next-btn {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.next-btn {
+  text-align: center;
+}

@@ -23,6 +23,18 @@ class MypageController extends Controller
         $year = $now->year;   // 現在の年
         $month = $now->month; // 現在の月
         
+        /*新規会員が初めてトレーニング登録する際に
+        マイページからトレーニング登録画面に遷移できるように以下のパラメータを定義してbladeで使用*/
+        $trainings_null = Auth::user()->trainings()->get();
+        //dd($trainings_null);
+        if ($trainings_null->isEmpty()) {
+            $training_parameter = 0;
+        } else {
+            $training_parameter = 1;
+        }
+        //dd($training_parameter);
+        
+        
         // 認証済みのユーザーIDをもとに
         // trainingテーブルの'training_year','training_month'と$year,$monthがそれぞれ同じレコードを取得。
         $trainings = Auth::user()->trainings()
@@ -31,9 +43,11 @@ class MypageController extends Controller
                 ->get();
         
         // $trainingsの#itemsが空の場合、今月のトレーニング登録がまだされていないのでトレーニング登録画面にリダイレクト
-        if ($trainings->isEmpty()){ // $trainings->null やとエラーになるなんでや
+        
+        if ($training_parameter == 1 && $trainings->isEmpty()){ // $trainings->null やとエラーになるなんでや
             return redirect('training_register/training_aim_register');     
         }
+        
         
         
         // 以下、認証済みユーザーが保持している最新のactionレコードを取得
@@ -108,6 +122,7 @@ class MypageController extends Controller
         
 
         return view('home/mypage')->with([
+            'training_parameter' => $training_parameter,
             'trainings' => $trainings,
             'latest_action' => $latest_action,
             'daysInMonth' => $daysInMonth,
