@@ -1,12 +1,19 @@
-@extends('layouts.layout_register')
+@extends('layouts.layout')
 
 @section('title', '目標/アクション登録完了')
 
 @section('content')
-    <def>
-        <b2>トレーニング登録完了画面</b2><br>
-        <p>トレーニング登録が完了しました</p>
+    <div class="training-form">
+        <div>
+            <h2>トレーニング登録完了</h2>
+        </div>
+        <div>
+            <p>今日行ったトレーニングを登録しましょう！</p>
+        </div>
         
-        <a href="{{ route('home.mypage') }}">マイページへ</a>
-    </def>
+        <div>
+            <p><a href="{{ route('home.mypage') }}">マイページへ</a></p>
+        </div>
+    </div>
+    
 @endsection

@@ -43,7 +43,7 @@
   line-height: 1.25em;
 }
 
-/*新規会員用画面*/
+/*新規会員用マイページ画面*/
 .start-guide {
   margin: auto;
   background: #fff;
@@ -68,10 +68,24 @@
 }
 
 .next-btn {
+  margin: auto;
   margin-top: 50px;
   margin-bottom: 100px;
+  text-align: center;
 }
 
-.next-btn {
+/* 過去履歴画面 */
+#td-center td {
   text-align: center;
+}
+
+/* トレーニング登録完了画面 */
+.training-form p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/*過去履歴１画面*/
+.table-center {
+  margin: 1% auto 5%;
 }

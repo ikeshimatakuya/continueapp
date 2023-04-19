@@ -57,18 +57,30 @@
         <div class="graph-wrapper">
             <canvas id="myChart1"></canvas>
             <script>
-                const ctx = document.getElementById('myChart1');
+                const ctx1 = document.getElementById('myChart1');
                 const daysInMonth = {{ $daysInMonth }};
                 const action_count = {{ $action_count }};
                 const data1 = [action_count, daysInMonth - action_count];
-            
-                new Chart(ctx, {
+                new Chart(ctx1, {
                     type: 'doughnut',
                     data: {
                         datasets: [{
                             data: data1,
                             borderWidth: 1
                         }]
+                    },
+                    options: {
+                        plugins: {
+                            doughnut: {
+                                centerText: {
+                                    text: 'My Text', /*試しに入れてみたけど表示されない*/
+                                    color: '#000',
+                                    fontStyle: 'Arial',
+                                    sidePadding: 20,
+                                    fontSize: 16
+                                }
+                            }     
+                        }
                     }
                 });
             </script>
@@ -85,12 +97,22 @@
                 const data2 = [actiontype_B_count, actiontype_U_count, actiontype_L_count];
                     
                 new Chart(ctx2, {
-                    type: 'doughnut',
+                    type: 'pie',
                     data: {
                         datasets: [{
                         data: data2,
                         borderWidth: 1
                         }]
+                    },
+                    options: {
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    var label = data.datasets[0].data[tooltipItem.index];
+                                    return label + ': ' + actiontype_B_count;
+                                }
+                            }
+                        }
                     }
                 });
             </script>
@@ -115,7 +137,7 @@
             
             {{-- アクション登録用フォーム--}}
             <div>
-                <p>「今日のアクション登録はまだ完了していません」</p>  
+                <p>「今日のトレーニングはまだ完了していません」</p>  
             </div>
 
             <div>
@@ -135,7 +157,7 @@
             {{-- アクション更新用フォーム --}}
             @else
             <div>
-                <p>今日のアクション登録は完了しています。</p>
+                <p>今日のトレーニングは完了しています。</p>
                 <p>編集する場合はプルダウンリストから行ったトレーニングを選択し、更新ボタンを押してください。</p>
             </div>
 
@@ -193,6 +215,5 @@
     </div>
     
     @endif
-
-
+    
 @endsection
