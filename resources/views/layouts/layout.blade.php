@@ -27,6 +27,7 @@
         {{-- 各画面のCSSを読み込み --}}
         <link href="{{ secure_asset('css/mypage.css') }}" rel="stylesheet">
         <link href="{{ secure_asset('css/auth.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/training_register.css') }}" rel="stylesheet">
     </head>
     
     <body>

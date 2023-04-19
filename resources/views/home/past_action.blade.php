@@ -3,13 +3,12 @@
 @section('title', '過去履歴１')
 
 @section('content')
-    <div>
+    <div class="login-form">
         <div>
             <h2>過去履歴</h2>
-        </div><br>
-
+        </div>
         <div>
-            <table>
+            <table class="table-center">
                 @foreach( $all_trainings as $month_training )
                 <tr>
                     {{-- リンク押下で$month_trainingのIDが渡される --}}
@@ -17,9 +16,9 @@
                 </tr>
                 @endforeach
             </table>
-        </div><br>    
+        </div><br>
 
-        <div>
+        <div class="checkbox">
             <a href="{{ route( 'home.mypage' ) }}">マイページへ戻る</a>
         </div>
     </div>

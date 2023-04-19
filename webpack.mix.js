@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/mypage.scss', 'public/css')
     .sass('resources/sass/auth.scss', 'public/css')
+    .sass('resources/sass/training_register.scss', 'public/css')
     .sourceMaps();

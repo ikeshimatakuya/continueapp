@@ -53,7 +53,7 @@
                 });
             </script>
         </div>
-        <div>
+        <div class="next-btn">
             <input type="button" onclick="history.back()" value="戻る">
         </div>
     </div>
