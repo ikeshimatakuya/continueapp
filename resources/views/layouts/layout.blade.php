@@ -22,62 +22,111 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
-        {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script> 
+        
         {{-- 各画面のCSSを読み込み --}}
+        <link href="{{ secure_asset('css/.css') }}" rel="stylesheet">
         <link href="{{ secure_asset('css/mypage.css') }}" rel="stylesheet">
         <link href="{{ secure_asset('css/auth.css') }}" rel="stylesheet">
-        <link href="{{ secure_asset('css/training_register.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/responsive.css') }}" rel="stylesheet">
     </head>
     
     <body>
-        <div class="header-wrapper">
-            <header>
+        <div id="munu">
+            <header class="header-wrapper container">
+                <h1>
+                    <a href="{{ route('home.mypage') }}">{{ config('app.name') }}</a>
+                </h1>
                 <nav>
-                    <div class="header-left">
-                        <h1>
-                            <a href="{{ route('home.mypage') }}">{{ config('app.name') }}</a>
-                        </h1>
-                    </div>
-                    <div class="header-right">
-                    <!-- Authentication Links -->
-                    {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
-                        <ul>
-                            @guest
-                            <li>
-                                <a href="{{ route('login') }}">ログイン</a>
+                    <ul class="navbar">
+                        @guest
+                        <li>
+                            <a href="{{ route('login') }}">ログイン</a>
+                        </li>
+                        @else
+                        <li>
+                            <a href="{{ route('home.mypage') }}">マイページ</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home.past_history') }}">過去履歴</a>
                             </li>
-                            @else
-                            <li>
-                                <a href="{{ route('home.past_history') }}">過去履歴</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('home.setting') }}">各種設定</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"
-                                    data-method="POST">
-                                    ログアウト
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                                </form>
-                            </li>
-                            @endguest
-                        </ul>
-                        
-                    </div>
+                        <li>
+                            <a href="{{ route('home.setting') }}">各種設定</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"
+                                data-method="POST">
+                                ログアウト
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                            </form>
+                        </li>
+                        @endguest
+                    </ul>
                 </nav>
+            
+                <nav class="sp-navbar" id="navbar">
+                    <ul>
+                        @guest
+                        <li>
+                            <a href="{{ route('login') }}">ログイン</a>
+                        </li>
+                        @else
+                        <li>
+                            <a href="{{ route('home.mypage') }}">マイページ</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home.past_history') }}">過去履歴</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home.setting') }}">各種設定</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home.user_manual') }}">ご利用ガイド</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"
+                                data-method="POST">
+                                ログアウト
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                            </form>
+                        </li>
+                        <li class="close">
+                            <span>閉じる</span>
+                        </li>
+                        @endguest
+                    </ul>
+                </nav>
+                <div id="hamburger-menu">
+                    <span></span>
+                </div>
             </header>
         </div>
         
-        <main class="main-wrapper">
+
+        <main class="main-wrapper container">
             @yield('content')
         </main>
+        
+        <script>
+            $(function(){
+                const hamburger = $('#hamburger-menu,.close')
+                const nav = $('.sp-navbar')
+                hamburger.on('click',function(){
+                    nav.toggleClass('open');
+                });
+            });
+        </script>
     </body>
 </html>
