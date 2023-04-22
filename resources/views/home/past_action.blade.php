@@ -16,10 +16,6 @@
                 </tr>
                 @endforeach
             </table>
-        </div><br>
-
-        <div class="checkbox">
-            <a href="{{ route( 'home.mypage' ) }}">マイページへ戻る</a>
         </div>
     </div>
 @endsection

@@ -3,7 +3,7 @@
 @section('title', '過去履歴の円グラフ')
 
 @section('content')
-<div class="content-center">
+<div class="content-center main-text">
         @foreach($past_trainings as $past_training)
         <p>期間：{{ $past_training->training_start_at }} 〜 {{ $past_training->training_finish_at }}</p>
         <p>習慣化したい事：{{ $past_training->training_aim}}</p>
@@ -52,9 +52,6 @@
                     }
                 });
             </script>
-        </div>
-        <div class="next-btn">
-            <input type="button" onclick="history.back()" value="戻る">
         </div>
     </div>
 @endsection

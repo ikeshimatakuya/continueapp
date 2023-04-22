@@ -19,9 +19,6 @@ use App\Http\Controllers\User\ManualController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 Route::controller(FinishUserRegisterController::class)->prefix('auth')->name('auth.')->middleware('auth')->group(function(){

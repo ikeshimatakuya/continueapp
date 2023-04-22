@@ -45,7 +45,7 @@
     </div>
     
     @else
-    <div class="content-center">
+    <div class="content-center main-text">
         @foreach($trainings as $training)
         <p>期間：{{ $training->training_start_at }} 〜 {{ $training->training_finish_at }}</p>
         <p>習慣化したい事：{{ $training->training_aim}}</p>
