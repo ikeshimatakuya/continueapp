@@ -35,8 +35,6 @@
             <div class="form-group">
                 <label for="password_confirmation">{{ __('messages.confirm_password') }}:</label>
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                
-                
             </div>
             
             <div class="checkbox">
@@ -45,6 +43,7 @@
                 </button>
             </div>
             
+
         </form>
     </div>
 

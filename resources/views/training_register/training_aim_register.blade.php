@@ -50,9 +50,11 @@
                         <input type="text" name="training_aim_lower" value="{{ old('training_aim_lower') }}" size="30"><br>
                     </div>
                 </div>
-            
-                {{-- トレーニング登録用のボタン--}}
                 
+                <div>
+                    <p>※一度登録すると来月になるまで変更できません</p>
+                </div>
+            
                 <div class="checkbox">
                     <button type="submit">登録</button>
                 </div>
