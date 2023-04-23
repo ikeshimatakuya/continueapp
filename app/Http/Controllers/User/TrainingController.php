@@ -26,12 +26,12 @@ class TrainingController extends Controller
                 ->where('training_year', '=',  $year)
                 ->where('training_month', '=', $month)
                 ->get();
-        /*
-        // $this_month_trainingsに値があればmypageにリダイレクト → 多分いらない
-        if ($this_month_trainings){ 
+        //dd($this_month_trainings);
+        //同月で複数のトレーニングを登録しないようにマイページにリダイレクト
+        if ($this_month_trainings->isNotEmpty()){
             return redirect('home/mypage');     
         }
-        */
+        
         
         
         return view('training_register/training_aim_register');
@@ -39,6 +39,25 @@ class TrainingController extends Controller
     
     public function createTrainingAim(Request $request)
     {
+        
+        $this->middleware('auth');
+             
+        $now = Carbon::now();
+        $year = $now->year;   // 現在の年
+        $month = $now->month; // 現在の月   
+        // 認証済みのユーザーIDをもとに
+        // trainingテーブルの'training_year','month'と$year,$monthが同じレコードを取得。
+        $this_month_trainings = Auth::user()->trainings()
+                ->where('training_year', '=',  $year)
+                ->where('training_month', '=', $month)
+                ->get();
+        //dd($this_month_trainings);
+        //同月で複数のトレーニングを登録しないようにマイページにリダイレクト
+        if ($this_month_trainings->isNotEmpty()){
+            return redirect('home/mypage');     
+        }
+        
+        
         $this->validate($request, Training::$rules);
         // インスタンス（レコード）を生成
         $training = new Training;

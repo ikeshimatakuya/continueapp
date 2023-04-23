@@ -24,7 +24,8 @@ label {
 }
 
 input[type=email],
-input[type=password] {
+input[type=password],
+input[type=text] {
   width: 100%;
   padding: 10px;
   border: none;
@@ -55,7 +56,7 @@ button[type=submit]:hover {
   margin-top: 10px;
 }
 
-#member-register {
+.form-text p {
   display: block; /*会員登録リンクを中央揃え*/
   margin: 20px auto;
   text-align: center;
@@ -74,4 +75,8 @@ button[type=submit]:hover {
 .register-form h2 {
   text-align: center;
   margin-bottom: 20px;
+}
+
+.manual-text li {
+  margin-bottom: 5px;
 }

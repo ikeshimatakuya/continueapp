@@ -45,7 +45,7 @@
                 </button>
             </div>
 
-            <div id="member-register">
+            <div class="form-text">
                 <a href="{{ route('register') }}">会員登録はこちら</a>
             </div>
             

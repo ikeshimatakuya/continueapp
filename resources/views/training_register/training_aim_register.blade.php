@@ -8,7 +8,7 @@
         {{-- 月が切り替わってトレーニング登録する際に --}}
         
         {{-- エラーがあれば表示 --}}
-        <div class="training-form">
+        <div class="login-form">
             
             <form action="{{ route('finish_training_aim_register') }}" method="post">
                 @csrf
@@ -50,11 +50,15 @@
                         <input type="text" name="training_aim_lower" value="{{ old('training_aim_lower') }}" size="30"><br>
                     </div>
                 </div>
-            
-                {{-- トレーニング登録用のボタン--}}
-                <div class="checkbox">
-                    <input type="submit" value="登録">
+                
+                <div>
+                    <p>※一度登録すると来月になるまで変更できません</p>
                 </div>
+            
+                <div class="checkbox">
+                    <button type="submit">登録</button>
+                </div>
+
             </form>
             
         </div>

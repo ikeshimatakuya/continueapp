@@ -79,13 +79,31 @@
   text-align: center;
 }
 
-/* トレーニング登録完了画面 */
-.training-form p {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
 /*過去履歴１画面*/
 .table-center {
   margin: 1% auto 5%;
+}
+
+/*ご利用ガイド画面*/
+.user-manual {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+.user-manual h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.manual-text li {
+  margin-top: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.manual-text p {
+  margin-bottom: 0.2em;
 }
