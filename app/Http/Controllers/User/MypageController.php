@@ -42,8 +42,7 @@ class MypageController extends Controller
                 ->where('training_month', '=', $month)
                 ->get();
         
-        // $trainingsの#itemsが空の場合、今月のトレーニング登録がまだされていないのでトレーニング登録画面にリダイレクト
-        
+        // $trainingsの#itemsが空の場合、今月のトレーニング登録がまだされていないのでトレーニング登録画面にリダイレクト(一度はトレーニング登録した事があるユーザーで月が切り替わった時の処理)
         if ($training_parameter == 1 && $trainings->isEmpty()){ // $trainings->null やとエラーになるなんでや
             return redirect('training_register/training_aim_register');     
         }
