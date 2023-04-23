@@ -17,7 +17,7 @@
         <p>パスワード再設定機能実装予定</p>
         
         <div class="checkbox">
-            <input type="submit" value="変更">
+            <button type="submit">変更</button>
         </div>
         
     </form>

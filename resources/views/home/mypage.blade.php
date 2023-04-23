@@ -151,7 +151,10 @@
                 </select><br><br>
                 
                 @endforeach
-                <input type="submit" value="登録">
+                
+                <div class="checkbox">
+                    <button type="submit">登録</button>
+                </div>
             </div>
             
             {{-- アクション更新用フォーム --}}
@@ -173,7 +176,9 @@
                 
                 @endforeach
                 
-                <input type="submit" value="更新">
+                <div class="checkbox">
+                    <button type="submit">更新</button>
+                </div>
             </div>
 
             @endif
