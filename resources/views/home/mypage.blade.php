@@ -123,15 +123,6 @@
     <div class="content-center">
         <form class="action-form" action="{{ route('home.mypage') }}" method="post">
         @csrf
-            {{-- バリデーション表示 --}}
-            @if (count($errors) > 0)
-                <ul>
-                    @foreach($errors->all() as $e)
-                        <li>{{ $e }}</li>
-                    @endforeach
-                </ul>
-            @endif
-            
             {{-- 今日のアクション登録が完了しているか判断 --}}
             @if ($latest_action == null || $latest_action->action_date != date('Y-m-d'))
             
@@ -151,6 +142,15 @@
                 </select><br><br>
                 
                 @endforeach
+                
+                {{-- バリデーション表示 --}}
+                @if (count($errors) > 0)
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+                @endif
                 
                 <div class="checkbox">
                     <button type="submit">登録</button>
@@ -175,6 +175,15 @@
                 </select><br><br>
                 
                 @endforeach
+                
+                {{-- バリデーション表示 --}}
+                @if (count($errors) > 0)
+                <ul>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
+                    @endforeach
+                </ul>
+                @endif
                 
                 <div class="checkbox">
                     <button type="submit">更新</button>

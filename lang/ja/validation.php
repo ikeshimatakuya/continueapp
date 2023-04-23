@@ -12,7 +12,8 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
-
+    
+    
     'accepted' => 'The :attribute must be accepted.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',
@@ -62,7 +63,7 @@ return [
         'string' => 'The :attribute must be greater than or equal to :value characters.',
     ],
     'image' => 'The :attribute must be an image.',
-    'in' => ':attribute 選択してください',
+    'in' => ':attribute を選択してください',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',
     'ip' => 'The :attribute must be a valid IP address.',
@@ -171,7 +172,7 @@ return [
         "training_aim_base" => '基本トレーニング',
         "training_aim_upper" => '上位トレーニング',
         "training_aim_lower" => '下位トレーニング',
-        "action_type" => 'アクション',
+        "action_type" => '今日行ったトレーニング',
     ],
 
 ];
