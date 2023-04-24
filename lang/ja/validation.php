@@ -57,7 +57,7 @@ return [
         'array'   => ':attribute には value 個以上の項目が必要です。',
     ],
     'image'                => ':attribute 画像は「jpg」「png」「bmp」「gif」「svg」のみ有効です',
-    'in'                   => ':attribute 無効な値です',
+    'in'                   => ':attributeを登録してください',
     'in_array'             => ':attribute は :other と一致する必要があります',
     'integer'              => ':attribute は整数のみ有効です',
     'ip'                   => ':attribute IPアドレスの書式のみ有効です',
@@ -134,6 +134,7 @@ return [
     */
 
     'attributes' => [
+        "email" => 'メールアドレス',
         "password" => 'パスワード',
         "training_aim" => '習慣化したいこと',
         "training_aim_base" => '基本トレーニング',
