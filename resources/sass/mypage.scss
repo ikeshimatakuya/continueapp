@@ -1,19 +1,24 @@
 /* mypage */
 
 .graph-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-@media (max-width: 768px) {
-    .graph-container {
-        flex-direction: column;
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .graph-wrapper {
-    width: 50%;
+  margin: 10px;
+  width: 400px;
+  height: 400px;
 }
+
+@media (max-width: 768px) {
+  .graph-container {
+    flex-direction: column;
+  }
+}
+
 
 @media (max-width: 768px) {
   .graph-wrapper {
